@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8oqxmm2w2wvv"]
+
+[ext_resource type="Script" path="res://scripts/World.gd" id="1_hgjuu"]
+[ext_resource type="PackedScene" uid="uid://dtk6wubd8cnyx" path="res://scenes/start_screen.tscn" id="2_noop5"]
+
+[node name="World" type="Node"]
+script = ExtResource("1_hgjuu")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/2d_player.tscn")
+spawn_path = NodePath("..")
+
+[node name="StartScreen" parent="." instance=ExtResource("2_noop5")]
+
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
+[connection signal="pressed" from="StartScreen/Panel/MainMenu/PanelContainer/MarginContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="StartScreen/Panel/MainMenu/PanelContainer/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="StartScreen/Panel/MainMenu/PanelContainer/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+
+[editable path="StartScreen"]

@@ -1,0 +1,182 @@
+[gd_scene load_steps=27 format=3 uid="uid://c6x1pqy120dmk"]
+
+[ext_resource type="Script" path="res://scripts/Slime_Enemy.gd" id="1_uwi03"]
+[ext_resource type="Texture2D" uid="uid://cvpwfeojyvl8o" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/enemies/slime/slime_idle_spritesheet.png" id="1_w7vhn"]
+[ext_resource type="Texture2D" uid="uid://bf6hnsqf6w0tg" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/enemies/slime/slime_run_spritesheeet.png" id="2_7akh8"]
+[ext_resource type="PackedScene" uid="uid://dqds6a6i1y724" path="res://scenes/HurtboxComponent.tscn" id="2_h2ifs"]
+[ext_resource type="PackedScene" uid="uid://cystsq84qxrqu" path="res://scenes/HealthComponent.tscn" id="3_a0iqu"]
+[ext_resource type="PackedScene" uid="uid://csy5wqu1hlxhr" path="res://scenes/Hitbox.tscn" id="4_oq5uh"]
+[ext_resource type="PackedScene" uid="uid://bos8ng8ecvy4o" path="res://scenes/StateMachine.tscn" id="7_xuvp3"]
+[ext_resource type="Script" path="res://scripts/EnemyIdle.gd" id="8_hx20h"]
+[ext_resource type="Script" path="res://scripts/EnemyFollow.gd" id="9_kawld"]
+[ext_resource type="Script" path="res://scripts/EnemyDead.gd" id="10_i1ptd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kxcm3"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytv3n"]
+atlas = ExtResource("1_w7vhn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5cfw"]
+atlas = ExtResource("1_w7vhn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mitg5"]
+atlas = ExtResource("1_w7vhn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2cq8"]
+atlas = ExtResource("1_w7vhn")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0msc"]
+atlas = ExtResource("1_w7vhn")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cnb1"]
+atlas = ExtResource("1_w7vhn")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28n0t"]
+atlas = ExtResource("2_7akh8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grxot"]
+atlas = ExtResource("2_7akh8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xced"]
+atlas = ExtResource("2_7akh8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bfos"]
+atlas = ExtResource("2_7akh8")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv0xo"]
+atlas = ExtResource("2_7akh8")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ajm4"]
+atlas = ExtResource("2_7akh8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w1yo3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytv3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5cfw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mitg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2cq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0msc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cnb1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28n0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grxot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xced")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bfos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv0xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ajm4")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_75ryx"]
+radius = 31.0644
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_htm1o"]
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_uwi03")
+knockbackModifier = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_kxcm3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w1yo3")
+animation = &"move"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_75ryx")
+
+[node name="Hitbox" parent="." instance=ExtResource("4_oq5uh")]
+scale = Vector2(1.28, 1.28)
+collision_layer = 4
+collision_mask = 2
+knockback = 30.0
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_htm1o")
+debug_color = Color(0.623529, 0, 0.117647, 0.419608)
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("2_h2ifs")]
+collision_layer = 4
+collision_mask = 10
+monitorable = true
+healthComponent = NodePath("../StateMachine/HealthComponent")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_htm1o")
+debug_color = Color(0, 0.639216, 0.243137, 0.419608)
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initialState") instance=ExtResource("7_xuvp3")]
+initialState = NodePath("EnemyIdle")
+
+[node name="EnemyIdle" type="Node" parent="StateMachine"]
+script = ExtResource("8_hx20h")
+
+[node name="EnemyFollow" type="Node" parent="StateMachine"]
+script = ExtResource("9_kawld")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("10_i1ptd")
+
+[node name="HealthComponent" parent="StateMachine" instance=ExtResource("3_a0iqu")]
+maxHealth = 3.0
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="DetectionArea" to="StateMachine/EnemyIdle" method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="DetectionArea" to="StateMachine/EnemyFollow" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_exited" from="DetectionArea" to="StateMachine/EnemyFollow" method="_on_detection_area_body_exited"]
+[connection signal="area_entered" from="HurtboxComponent" to="HurtboxComponent" method="_on_area_entered"]
