@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dfyt71vfmdv10" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/full tilemap.png" id="2_5mj7o"]
 [ext_resource type="PackedScene" uid="uid://bhl30qvpvqim4" path="res://scenes/door.tscn" id="3_byljd"]
 [ext_resource type="Texture2D" uid="uid://c6gh3dgett7o7" path="res://addons/isometric tileset/spritesheet.png" id="5_kowtl"]
+[ext_resource type="PackedScene" uid="uid://kg64yfcx4ttw" path="res://scenes/Floor_F1.tscn" id="5_na8bk"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_222oj"]
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 640, 0, 640, 368, 0, 368)])
@@ -406,8 +407,6 @@ tile_size = Vector2i(32, 16)
 sources/1 = SubResource("TileSetAtlasSource_4ppto")
 sources/0 = SubResource("TileSetAtlasSource_7e5kc")
 
-[sub_resource type="PackedScene" id="PackedScene_6o35t"]
-
 [node name="world_F2" type="Node2D"]
 position = Vector2(1144, 0)
 script = ExtResource("1_rokbk")
@@ -450,7 +449,7 @@ layer_1/tile_data = PackedInt32Array(6, 524289, 3, 5, 524289, 3, 65542, 524289, 
 
 [node name="Door_F2" parent="Doors" instance=ExtResource("3_byljd")]
 position = Vector2(1083, 4)
-destination_level_tag = SubResource("PackedScene_6o35t")
+destination_level_tag = ExtResource("5_na8bk")
 destination_door_tag = "Door_F1"
 spawn_direction = "right"
 
