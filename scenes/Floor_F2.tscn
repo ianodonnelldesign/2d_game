@@ -407,7 +407,7 @@ tile_size = Vector2i(32, 16)
 sources/1 = SubResource("TileSetAtlasSource_4ppto")
 sources/0 = SubResource("TileSetAtlasSource_7e5kc")
 
-[node name="world_F2" type="Node2D"]
+[node name="Level" type="Node2D"]
 position = Vector2(1144, 0)
 script = ExtResource("1_rokbk")
 

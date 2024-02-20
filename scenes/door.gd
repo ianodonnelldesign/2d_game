@@ -10,7 +10,5 @@ class_name Door
 func _on_body_entered(body):
 	if body is Player:
 		NavigationManager.go_to_level(destination_level_tag, destination_door_tag)
-		
-	#if NavigationManager.spawn_door_tag != null:
-		#Level.enter_door()
 	
+	#add the door tag to a list, add this node's name to a list, keep track of that list in the navigation manager maybe??
