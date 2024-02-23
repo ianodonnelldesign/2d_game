@@ -28,9 +28,9 @@ func _ready():
 	if not is_multiplayer_authority(): return
 	camera.make_current()
 	
-	NavigationManager.on_trigger_player_spawn.connect(on_spawn)
+	NavigationManager.on_trigger_player_spawn.connect(player_spawn)
 
-func on_spawn(position: Vector2, direction: String):
+func player_spawn(position: Vector2, direction: String):
 	global_position = position
 	#can animate the player walking through the door here
 
