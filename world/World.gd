@@ -4,8 +4,8 @@ extends Node
 @onready var startScreen = $StartScreen
 @onready var address_entry = $StartScreen/Panel/MainMenu/PanelContainer/MarginContainer/VBoxContainer/AddressEntry
 
-const gameWorld = preload("res://scenes/Floor_F1.tscn")
-const Player = preload("res://scenes/2d_player.tscn")
+const gameWorld = preload("res://level/Floor_F1.tscn")
+const Player = preload("res://player/2d_player.tscn")
 
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()

@@ -10,6 +10,7 @@ func _ready():
 
 func damage(attack: Attack):
 	health -= attack.attackDamage
+	Transitioned.emit(self, "EnemyFollow")
 	
 	if health <= 0:
 		Transitioned.emit(stateMachine.currentState, "Dead")

@@ -9,7 +9,7 @@ func damage(attack: Attack):
 		healthComponent.damage(attack)
 	
 		var knockback_direction = attack.attackPosition.direction_to(self.global_position)
-		var knockback = knockback_direction * attack.knockback
-		hitbox.global_position += knockback
+		#var knockback = (knockback_direction * attack.knockback) * hitbox.knockbackModifier
+		hitbox.velocity += knockback_direction * attack.knockback * 50
 	else:
 		return

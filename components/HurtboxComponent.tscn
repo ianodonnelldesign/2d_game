@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqds6a6i1y724"]
 
-[ext_resource type="Script" path="res://scripts/Hurtbox.gd" id="1_kspl8"]
+[ext_resource type="Script" path="res://components/Hurtbox.gd" id="1_kspl8"]
 
 [node name="HurtboxComponent" type="Area2D"]
 monitorable = false

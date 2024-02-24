@@ -4,8 +4,10 @@ class_name Player
 var mouseCapture = true
 @onready var camera = $Camera2D
 
-const playerSpeed = 60.0
-@export var moveDir = Vector2(0,0)
+@export var playerSpeed = 100
+@export var acceleration: int = 40
+var moveDirection = Vector2.ZERO
+
 @export var knockbackModifier = 1.0
 
 @onready var weapon =  $Weapon
@@ -54,12 +56,12 @@ func _process(_delta: float) -> void:
 
 func get_input() -> void:
 	if not is_multiplayer_authority(): return
-	moveDir = Vector2.ZERO
-	var direction = Input.get_vector("left", "right", "forward", "backward")
-	if direction:
-		velocity = direction * playerSpeed
+
+	var moveDirection = Input.get_vector("left", "right", "forward", "backward")
+	if moveDirection:
+		velocity = moveDirection * acceleration
 	else:
-		velocity.x = move_toward(velocity.x, 0, playerSpeed)
-		velocity.y = move_toward(velocity.y, 0, playerSpeed)
+		velocity.x = move_toward(velocity.x, 0, acceleration)
+		velocity.y = move_toward(velocity.y, 0, acceleration)
 		
 	move_and_slide()

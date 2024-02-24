@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://csy5wqu1hlxhr"]
 
-[ext_resource type="Script" path="res://scripts/Hitbox.gd" id="1_0hcjn"]
+[ext_resource type="Script" path="res://components/Hitbox.gd" id="1_0hcjn"]
 
 [node name="Hitbox" type="Area2D"]
 modulate = Color(1, 0.0941176, 0.0941176, 1)

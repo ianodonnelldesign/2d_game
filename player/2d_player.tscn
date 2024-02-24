@@ -1,65 +1,65 @@
 [gd_scene load_steps=34 format=3 uid="uid://d04e322sysodu"]
 
-[ext_resource type="Script" path="res://scripts/Player.gd" id="1_nu2ko"]
-[ext_resource type="Script" path="res://scripts/FiniteStateMachine.gd" id="2_8f34g"]
-[ext_resource type="Script" path="res://scripts/PlayerIdle.gd" id="3_0f1rg"]
-[ext_resource type="Script" path="res://scripts/PlayerDeath.gd" id="4_o8ssl"]
-[ext_resource type="Texture2D" uid="uid://8c50pxmumybx" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/heroes/knight/knight_idle_spritesheet.png" id="4_tbyv5"]
-[ext_resource type="Texture2D" uid="uid://bvvoeln3lwb27" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/heroes/knight/knight_run_spritesheet.png" id="5_rin05"]
-[ext_resource type="Texture2D" uid="uid://kd80i7fply3" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/heroes/knight/weapon_sword_1.png" id="6_8j8vq"]
-[ext_resource type="PackedScene" uid="uid://csy5wqu1hlxhr" path="res://scenes/Hitbox.tscn" id="7_7kmw0"]
-[ext_resource type="Texture2D" uid="uid://brhj2luavub7t" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/effects (new)/slash_effect_anim_spritesheet.png" id="8_ouy3x"]
-[ext_resource type="PackedScene" uid="uid://dqds6a6i1y724" path="res://scenes/HurtboxComponent.tscn" id="9_6hd17"]
-[ext_resource type="Script" path="res://scripts/HealthComponent.gd" id="10_ik4h4"]
+[ext_resource type="Script" path="res://player/Player.gd" id="1_6c7yl"]
+[ext_resource type="Script" path="res://scenes/FiniteStateMachine.gd" id="2_78mvl"]
+[ext_resource type="Script" path="res://components/HealthComponent.gd" id="3_kk08w"]
+[ext_resource type="Script" path="res://player/PlayerIdle.gd" id="4_dqgiv"]
+[ext_resource type="Script" path="res://player/PlayerDeath.gd" id="5_wmefp"]
+[ext_resource type="Texture2D" uid="uid://8c50pxmumybx" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/heroes/knight/knight_idle_spritesheet.png" id="6_af5i2"]
+[ext_resource type="Texture2D" uid="uid://bvvoeln3lwb27" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/heroes/knight/knight_run_spritesheet.png" id="7_vopu1"]
+[ext_resource type="Texture2D" uid="uid://kd80i7fply3" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/heroes/knight/weapon_sword_1.png" id="8_j7adp"]
+[ext_resource type="PackedScene" uid="uid://csy5wqu1hlxhr" path="res://components/Hitbox.tscn" id="9_o4xor"]
+[ext_resource type="Texture2D" uid="uid://brhj2luavub7t" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/effects (new)/slash_effect_anim_spritesheet.png" id="10_8g8sk"]
+[ext_resource type="PackedScene" uid="uid://dqds6a6i1y724" path="res://components/HurtboxComponent.tscn" id="11_u6o8k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2nr10"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6od2t"]
-atlas = ExtResource("4_tbyv5")
+atlas = ExtResource("6_af5i2")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pcen5"]
-atlas = ExtResource("4_tbyv5")
+atlas = ExtResource("6_af5i2")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7y6mc"]
-atlas = ExtResource("4_tbyv5")
+atlas = ExtResource("6_af5i2")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_216rf"]
-atlas = ExtResource("4_tbyv5")
+atlas = ExtResource("6_af5i2")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_frtqy"]
-atlas = ExtResource("4_tbyv5")
+atlas = ExtResource("6_af5i2")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1na1v"]
-atlas = ExtResource("4_tbyv5")
+atlas = ExtResource("6_af5i2")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h6q6g"]
-atlas = ExtResource("5_rin05")
+atlas = ExtResource("7_vopu1")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bnuf6"]
-atlas = ExtResource("5_rin05")
+atlas = ExtResource("7_vopu1")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n5g6s"]
-atlas = ExtResource("5_rin05")
+atlas = ExtResource("7_vopu1")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n750k"]
-atlas = ExtResource("5_rin05")
+atlas = ExtResource("7_vopu1")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gwymf"]
-atlas = ExtResource("5_rin05")
+atlas = ExtResource("7_vopu1")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q2bt6"]
-atlas = ExtResource("5_rin05")
+atlas = ExtResource("7_vopu1")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ob0b8"]
@@ -268,25 +268,25 @@ properties/3/replication_mode = 1
 z_index = 10
 collision_layer = 2
 collision_mask = 7
-script = ExtResource("1_nu2ko")
+script = ExtResource("1_6c7yl")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 scale = Vector2(0.72, 0.72)
 shape = SubResource("CircleShape2D_2nr10")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
-script = ExtResource("2_8f34g")
+script = ExtResource("2_78mvl")
 initialState = NodePath("PlayerIdle")
 
 [node name="HealthComponent" type="Node2D" parent="StateMachine"]
-script = ExtResource("10_ik4h4")
+script = ExtResource("3_kk08w")
 maxHealth = 6.0
 
 [node name="PlayerIdle" type="Node" parent="StateMachine"]
-script = ExtResource("3_0f1rg")
+script = ExtResource("4_dqgiv")
 
 [node name="Dead" type="Node" parent="StateMachine"]
-script = ExtResource("4_o8ssl")
+script = ExtResource("5_wmefp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -311,14 +311,13 @@ rotation = 1.5708
 [node name="Sprite2D" type="Sprite2D" parent="Weapon/Node2D"]
 position = Vector2(4.76837e-07, -11)
 rotation = -0.724312
-texture = ExtResource("6_8j8vq")
+texture = ExtResource("8_j7adp")
 offset = Vector2(-5, -4)
 flip_h = true
 
-[node name="Hitbox2" parent="Weapon/Node2D/Sprite2D" instance=ExtResource("7_7kmw0")]
+[node name="Hitbox2" parent="Weapon/Node2D/Sprite2D" instance=ExtResource("9_o4xor")]
 collision_layer = 8
 collision_mask = 6
-attackDamage = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon/Node2D/Sprite2D/Hitbox2"]
 position = Vector2(-15.9411, -14.4638)
@@ -335,10 +334,10 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="Weapon"]
 visible = false
 position = Vector2(24, 0)
-texture = ExtResource("8_ouy3x")
+texture = ExtResource("10_8g8sk")
 hframes = 3
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("9_6hd17")]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("11_u6o8k")]
 collision_layer = 2
 collision_mask = 6
 monitorable = true
