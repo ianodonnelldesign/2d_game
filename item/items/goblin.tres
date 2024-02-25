@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://xsfmi34nupk1"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_85ylu"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4detp"]
+load_path = "res://.godot/imported/full spritesheet.png-6a04ff40564dc5e2ba4d67be66228ce5.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d85m"]
+atlas = SubResource("CompressedTexture2D_4detp")
+region = Rect2(16, 16, 16, 16)
+
+[resource]
+script = ExtResource("1_85ylu")
+name = "Goblin"
+description = ""
+stackable = true
+texture = SubResource("AtlasTexture_4d85m")

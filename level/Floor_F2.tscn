@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dfyt71vfmdv10" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/full tilemap.png" id="2_gfrwc"]
 [ext_resource type="Texture2D" uid="uid://c6gh3dgett7o7" path="res://addons/isometric tileset/spritesheet.png" id="3_v7wlb"]
 [ext_resource type="PackedScene" uid="uid://bhl30qvpvqim4" path="res://components/door.tscn" id="4_bapb1"]
-[ext_resource type="PackedScene" uid="uid://c5oxsctkukgxg" path="res://level/Floor_F1.tscn" id="5_xd1og"]
+[ext_resource type="PackedScene" path="res://level/flooFloor_F1.tscn" id="5_xd1og"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_222oj"]
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 640, 0, 640, 368, 0, 368)])

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://0487avgomth7"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_v53t2"]
+[ext_resource type="Texture2D" uid="uid://c41whndhp3b6a" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/full spritesheet.png" id="2_lbaym"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_makms"]
+atlas = ExtResource("2_lbaym")
+region = Rect2(96, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_v53t2")
+name = "Bomb"
+description = "Set this down for a BOOM!"
+stackable = true
+texture = SubResource("AtlasTexture_makms")

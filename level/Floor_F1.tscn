@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5oxsctkukgxg"]
+[gd_scene load_steps=18 format=3 uid="uid://di1usy340atak"]
 
 [ext_resource type="Script" path="res://level/level.gd" id="1_c1awv"]
 [ext_resource type="Texture2D" uid="uid://dfyt71vfmdv10" path="res://addons/v1.1 dungeon crawler 16X16 pixel pack/full tilemap.png" id="2_b61cm"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bhl30qvpvqim4" path="res://components/door.tscn" id="4_o23s2"]
 [ext_resource type="PackedScene" uid="uid://cjk5ygnp7dgk" path="res://level/Floor_F2.tscn" id="5_h7ip1"]
 [ext_resource type="PackedScene" uid="uid://c6x1pqy120dmk" path="res://enemy/enemy.tscn" id="6_0aohb"]
+[ext_resource type="PackedScene" uid="uid://dpuk2e3g521lu" path="res://item/pickup/pick_up.tscn" id="7_8cenm"]
+[ext_resource type="Resource" uid="uid://0487avgomth7" path="res://item/items/bomb.tres" id="8_rtcdj"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="9_mtl47"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_222oj"]
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 640, 0, 640, 368, 0, 368)])
@@ -408,6 +411,11 @@ tile_size = Vector2i(32, 16)
 sources/1 = SubResource("TileSetAtlasSource_4ppto")
 sources/0 = SubResource("TileSetAtlasSource_7e5kc")
 
+[sub_resource type="Resource" id="Resource_tvgwa"]
+script = ExtResource("9_mtl47")
+item_data = ExtResource("8_rtcdj")
+quantity = 1
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_c1awv")
 
@@ -458,5 +466,9 @@ position = Vector2(-16, 0)
 
 [node name="Enemy" parent="." instance=ExtResource("6_0aohb")]
 position = Vector2(-97, -67)
+
+[node name="Pickup" parent="." instance=ExtResource("7_8cenm")]
+position = Vector2(38, -39)
+slot_data = SubResource("Resource_tvgwa")
 
 [editable path="Doors/Door_F1"]

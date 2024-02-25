@@ -1,18 +1,32 @@
 extends CharacterBody2D
 class_name Player
 
+#Mouse and Camera
 var mouseCapture = true
 @onready var camera = $Camera2D
 
+#Movement
 @export var playerSpeed = 100
 @export var acceleration: int = 40
+const friction = 0.15
 var moveDirection = Vector2.ZERO
 
 @export var knockbackModifier = 1.0
 
-@onready var weapon =  $Weapon
-@onready var weaponAnimationPlayer = $Weapon/WeaponAnimationPlayer
+#Inventory
+@export var inventory_data: InventoryData
+@export var equip_inventory_data: InventoryDataEquip
+@onready var inventory_interface = $"PlayerUI/Inventory Interface"
+@onready var drop_position = $DropPosition
+@onready var hot_bar_inventory = $PlayerUI/HotBarInventory
 
+#Hands
+@onready var hand1 = $Hand1
+@onready var holdItem1 =  hand1.get_child(0)
+@onready var hand2 = $Hand2
+@onready var holdItem2 =  hand2.get_child(0)
+
+#Sprite
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _enter_tree():
@@ -30,6 +44,10 @@ func _ready():
 	if not is_multiplayer_authority(): return
 	camera.make_current()
 	
+	inventory_interface.set_player_inventory_data(self.inventory_data)
+	inventory_interface.set_equip_inventory_data(self.equip_inventory_data)
+	hot_bar_inventory.set_inventory_data(self.inventory_data)
+	
 	NavigationManager.on_trigger_player_spawn.connect(player_spawn)
 
 func player_spawn(position: Vector2, direction: String):
@@ -45,14 +63,29 @@ func _process(_delta: float) -> void:
 	elif get_global_mouse_position().x < global_position.x:
 		animated_sprite.scale.x = -1
 	
-	weapon.rotation = mouse_direction.angle()
-	if weapon.scale.y == 1 and mouse_direction.x < 0:
-		weapon.scale.y = -1
-	elif weapon.scale.y == -1 and mouse_direction.x > 0:
-		weapon.scale.y = 1
+	if holdItem1 != null:
+		holdItem1.rotation = mouse_direction.angle()
+		if holdItem1.scale.y == 1 and mouse_direction.x < 0:
+			holdItem1.scale.y = -1
+		elif holdItem1.scale.y == -1 and mouse_direction.x > 0:
+			holdItem1.scale.y = 1
 	
-	if Input.is_action_pressed("attack") and not weaponAnimationPlayer.is_playing():
-		weaponAnimationPlayer.play("attack")
+	if holdItem2 != null:
+		holdItem2.rotation = mouse_direction.angle()
+		if holdItem2.scale.y == 1 and mouse_direction.x < 0:
+			holdItem2.scale.y = -1
+		elif holdItem2.scale.y == -1 and mouse_direction.x > 0:
+			holdItem2.scale.y = 1
+	
+	if Input.is_action_pressed("use_item1") and holdItem1 != null:
+		holdItem1.use_item()
+	if Input.is_action_pressed("use_item2") and holdItem2 != null:
+		holdItem2.use_item()
+
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("inventory_action"):
+		inventory_interface.visible = not inventory_interface.visible
+		hot_bar_inventory.visible = not hot_bar_inventory.visible
 
 func get_input() -> void:
 	if not is_multiplayer_authority(): return
