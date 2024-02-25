@@ -3,8 +3,6 @@ extends PanelContainer
 signal hot_bar_use(index: int)
 
 const inventorySlot = preload("res://inventory/inventory_slot.tscn")
-@onready var hand_1 = $"../../Hand1"
-@onready var hand_2 = $"../../Hand2"
 
 @onready var h_box_container = $MarginContainer/HBoxContainer
 

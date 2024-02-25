@@ -42,7 +42,9 @@ func drop_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
 		return_slot_data = slot_data
 	
 	inventory_updated.emit(self)
+	
 	return return_slot_data
+
 
 func use_slot_data(index: int) -> void:
 	var slot_data = slot_datas[index]

@@ -22,9 +22,9 @@ var moveDirection = Vector2.ZERO
 
 #Hands
 @onready var hand1 = $Hand1
-@onready var holdItem1 =  hand1.get_child(0)
 @onready var hand2 = $Hand2
-@onready var holdItem2 =  hand2.get_child(0)
+var holdItem1
+var holdItem2
 
 #Sprite
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -62,6 +62,15 @@ func _process(_delta: float) -> void:
 		animated_sprite.scale.x = 1
 	elif get_global_mouse_position().x < global_position.x:
 		animated_sprite.scale.x = -1
+	######################
+	######################
+	#FIX THIS. It only needs to be checked once, after something is instanced as hand's child
+	######################
+	######################
+	if hand1.get_child(0) != null:
+		holdItem1 = hand1.get_child(0)
+	if hand2.get_child(0) != null:
+		holdItem2 = hand2.get_child(0)
 	
 	if holdItem1 != null:
 		holdItem1.rotation = mouse_direction.angle()
@@ -81,6 +90,7 @@ func _process(_delta: float) -> void:
 		holdItem1.use_item()
 	if Input.is_action_pressed("use_item2") and holdItem2 != null:
 		holdItem2.use_item()
+		print("used offhand item")
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("inventory_action"):
@@ -98,3 +108,42 @@ func get_input() -> void:
 		velocity.y = move_toward(velocity.y, 0, acceleration)
 		
 	move_and_slide()
+
+func equip_item():
+	#can probably pass the index here to better tell when to add
+	
+	var holdItem1 = hand1.get_child(0)
+	var holdItem2 = hand2.get_child(0)
+	
+	if equip_inventory_data.slot_datas[0]:
+		var inventory_item = equip_inventory_data.slot_datas[0]
+		var holdItem = inventory_item.item_data.holdItem
+		var instance = holdItem.instantiate()
+		hand1.add_child(instance)
+	
+	if equip_inventory_data.slot_datas[1]:
+		var inventory_item = equip_inventory_data.slot_datas[1]
+		var holdItem = inventory_item.item_data.holdItem
+		var instance = holdItem.instantiate()
+		hand2.add_child(instance)
+
+func unequip_item(index):
+	var holdItem1 = hand1.get_child(0)
+	var holdItem2 = hand2.get_child(0)
+	
+	if index == 0:
+		holdItem1.queue_free()
+	if index == 1:
+		holdItem2.queue_free()
+#put something here to remove it too
+	
+	
+	#elif equip_inventory_data.slot_datas[0]:
+		#
+	#
+	#if equip_inventory_data.slot_datas[1]:
+		#var holdItem2 = equip_inventory_data.slot_datas[1]
+		#var holdItem = holdItem2.holdItem
+		#
+		#hand2.instantiate(holdItem)
+		#hand2.add_child(holdItem)

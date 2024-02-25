@@ -5,6 +5,7 @@ signal drop_slot_data(slot_data: SlotData)
 const pickup = preload("res://item/pickup/pick_up.tscn")
 var grabbed_slot_data: SlotData
 
+@onready var player = get_owner()
 @onready var grabbed_slot = $GrabbedSlot
 @onready var player_inventory = $PlayerInventory
 @onready var equip_inventory = $EquipInventory
@@ -25,12 +26,23 @@ func on_inventory_interact(inventory_data: InventoryData, index: int, button: in
 	match [grabbed_slot_data, button]:
 		[null, MOUSE_BUTTON_LEFT]:
 			grabbed_slot_data = inventory_data.grab_slot_data(index)
+			if inventory_data is InventoryDataEquip:
+				player.unequip_item(index)
+			if inventory_data is InventoryDataGear:
+				print("is gear")
 		[_, MOUSE_BUTTON_LEFT]:
 			grabbed_slot_data = inventory_data.drop_slot_data(grabbed_slot_data, index)
+			#if we put this item in an Equipment slot, do something
+			if inventory_data is InventoryDataEquip:
+				player.equip_item()
+			if inventory_data is InventoryDataGear:
+				print("is gear")
 		[null, MOUSE_BUTTON_RIGHT]:
 			inventory_data.use_slot_data(index)
 		[_, MOUSE_BUTTON_RIGHT]:
 			grabbed_slot_data = inventory_data.drop_single_slot_data(grabbed_slot_data, index)
+			if inventory_data is InventoryDataEquip:
+				player.equip_item()
 
 	update_grabbed_slot()
 
@@ -40,7 +52,6 @@ func update_grabbed_slot() -> void:
 		grabbed_slot.set_slot_data(grabbed_slot_data)
 	else:
 		grabbed_slot.hide()
-
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton \

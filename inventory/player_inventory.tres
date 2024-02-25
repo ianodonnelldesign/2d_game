@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://inventory/inventory_data.gd" id="1_qgcxy"]
 [ext_resource type="Resource" uid="uid://0487avgomth7" path="res://item/items/bomb.tres" id="2_5psw5"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_wdbnr"]
-[ext_resource type="Resource" uid="uid://biy8g8uxktfsq" path="res://item/items/sword.tres" id="4_k03um"]
+[ext_resource type="Resource" uid="uid://w02rbq0cgwln" path="res://item/items/sword.tres" id="4_k03um"]
 [ext_resource type="Resource" uid="uid://xsfmi34nupk1" path="res://item/items/goblin.tres" id="5_bvb6u"]
 
 [sub_resource type="Resource" id="Resource_nnvq3"]

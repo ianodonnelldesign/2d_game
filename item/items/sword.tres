@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemDataEquip" load_steps=5 format=3 uid="uid://w02rbq0cgwln"]
 
 [ext_resource type="Script" path="res://item/item_data_equip.gd" id="1_0s80q"]
-[ext_resource type="PackedScene" uid="uid://bucdb70g31ni0" path="res://item/items/sword_hold_item.tscn" id="1_xay6f"]
+[ext_resource type="PackedScene" uid="uid://bucdb70g31ni0" path="res://item/hold items/sword_hold_item.tscn" id="1_rdjkv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4ma1h"]
 load_path = "res://.godot/imported/weapon_sword_1.png-dcdd736281ea40bb40e43399ae959a61.ctex"
@@ -12,7 +12,7 @@ region = Rect2(0, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_0s80q")
-holdItem = ExtResource("1_xay6f")
+holdItem = ExtResource("1_rdjkv")
 name = "Sword"
 description = ""
 stackable = false
